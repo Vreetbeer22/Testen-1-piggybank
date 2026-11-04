@@ -1,0 +1,17 @@
+$kind: http-request
+description: ""
+url: http://localhost:8080/api/v1/transactions/1?limit=abc
+method: GET
+headers:
+  X-User-Id: "1"
+queryParams:
+  limit: abc
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 400\", function () {\r
+
+      \    pm.response.to.have.status(400);\r
+
+      });"
+    language: text/javascript
+order: 4430408120323745

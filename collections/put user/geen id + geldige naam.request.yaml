@@ -1,0 +1,18 @@
+$kind: http-request
+description: ""
+url: http://localhost:8080/api/v1/accounts/
+method: PUT
+headers:
+  X-User-Id: "1"
+body:
+  type: json
+  content: '{"name": "Nieuwe naam"}'
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 404\", function () {\r
+
+      \    pm.response.to.have.status(404);\r
+
+      });"
+    language: text/javascript
+order: 4377177747650583

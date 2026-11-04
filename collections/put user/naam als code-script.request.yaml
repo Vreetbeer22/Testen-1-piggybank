@@ -1,0 +1,19 @@
+$kind: http-request
+name: naam als code/script
+description: ""
+url: http://localhost:8080/api/v1/accounts/1
+method: PUT
+headers:
+  X-user-Id: "1"
+body:
+  type: json
+  content: '{"name": "<script>alert(1)</script>"}'
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 200 of 400\", function () {\r
+
+      \    pm.expect(pm.response.code).to.be.oneOf([200, 400]);\r
+
+      });"
+    language: text/javascript
+order: 4503144942784050

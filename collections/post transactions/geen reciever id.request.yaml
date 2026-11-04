@@ -1,0 +1,28 @@
+$kind: http-request
+description: ""
+url: " http://localhost:8080/api/v1/transactions"
+method: POST
+headers:
+  X-User-Id: "1"
+body:
+  type: json
+  content: "{\r
+
+    \  \"senderAccountId\": 1,\r
+
+    \  \"description\": \"Testtransactie\",\r
+
+    \  \"amount\": 10.00,\r
+
+    \  \"currency\": \"EURO\"\r
+
+    }"
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 400\", function () {\r
+
+      \    pm.response.to.have.status(400);\r
+
+      });"
+    language: text/javascript
+order: 1966773113144800

@@ -1,0 +1,18 @@
+$kind: http-request
+description: ""
+url: http://localhost:8080/api/v1/accounts/1
+method: PUT
+headers:
+  X-User-Id: "1"
+body:
+  type: json
+  content: '{"name": "Rekening van Sara"}'
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 200 of 409\", function () {\r
+
+      \    pm.expect(pm.response.code).to.be.oneOf([200, 409]);\r
+
+      });"
+    language: text/javascript
+order: 4502911718140862

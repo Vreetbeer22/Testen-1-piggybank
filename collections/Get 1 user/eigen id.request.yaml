@@ -1,0 +1,37 @@
+$kind: http-request
+description: ""
+url: http://localhost:8080/api/v1/accounts/1
+method: GET
+headers:
+  X-User-Id: "1"
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 200\", function () {\r
+
+      \    pm.response.to.have.status(200);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Response bevat correcte account id\", function () {\r
+
+      \    const jsonData = pm.response.json();\r
+
+      \    pm.expect(jsonData.id).to.eql(1);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Response bevat verwachte velden\", function () {\r
+
+      \    const jsonData = pm.response.json();\r
+
+      \    pm.expect(jsonData).to.have.property(\"balance\");\r
+
+      \    pm.expect(jsonData).to.have.property(\"name\");\r
+
+      });"
+    language: text/javascript
+order: 1790180014923

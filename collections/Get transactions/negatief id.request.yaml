@@ -1,0 +1,15 @@
+$kind: http-request
+description: ""
+url: http://localhost:8080/api/v1/transactions/-1
+method: GET
+headers:
+  X-User-Id: "1"
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 404\", function () {\r
+
+      \    pm.response.to.have.status(404);\r
+
+      });"
+    language: text/javascript
+order: 4147809563213624

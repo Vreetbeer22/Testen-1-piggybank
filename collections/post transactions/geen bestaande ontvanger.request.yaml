@@ -1,0 +1,28 @@
+$kind: http-request
+description: ""
+url: http://localhost:8080/api/v1/transactions
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"senderAccountId\": 1,\r
+
+    \  \"receiverAccountId\": 999999,\r
+
+    \  \"description\": \"Testtransactie\",\r
+
+    \  \"amount\": 10.00,\r
+
+    \  \"currency\": \"EUR)\"\r
+
+    }"
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 404\", function () {\r
+
+      \    pm.response.to.have.status(404);\r
+
+      });"
+    language: text/javascript
+order: 4409160093735576
